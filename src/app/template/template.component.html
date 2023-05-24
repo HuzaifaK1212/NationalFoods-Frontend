@@ -1,0 +1,269 @@
+<!-- Header -->
+<mat-toolbar color="primary" class="app-toolbar">
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span class="logo"></span>
+    <span class="example-spacer"></span>
+    <div class="search-box">
+        <form role="search" class="in-suiteux-search-box">
+            <span role="none">
+                <button type="button" tabindex="-1" aria-hidden="true" class="search-btn">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </span>
+            <input role="combobox" type="search" aria-autocomplete="list" aria-owns="ms-searchux-popup-0" accesskey="S"
+                spellcheck="false" autocomplete="off" autocorrect="false" data-nav="true" data-tab="true"
+                maxlength="500" class="search-input" aria-expanded="false" placeholder="Search this site"
+                aria-label="Search box. Suggestions appear as you type.">
+            <div role="listbox" aria-busy="true" tabindex="-1" style="display: none;" class="search-result-box"
+                aria-label="Search suggestions">Search Results</div>
+        </form>
+    </div>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with user icon"
+        color="accent" [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>General Settings</button>
+        <button mat-menu-item>Account Settings</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>Profile</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>Logout</button>
+    </mat-menu>
+</mat-toolbar>
+<!-- End of Header -->
+
+<!-- Container -->
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a href="#" class="menu-item"><mat-icon>dashboard_customize</mat-icon> Dashboard</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Trademarks</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button routerLink="trademarks" mat-button class="menu-item"> Trademarks</button>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <div class="full-width">
+            <mat-toolbar class="ribbon-toolbar">
+                <!-- <div class="example-button-row"> -->
+                <button mat-button class="ribbon-button" color="primary"><mat-icon>add</mat-icon> Add New</button>
+                <button mat-button class="ribbon-button" color="primary"><mat-icon>upload</mat-icon> Upload</button>
+                <button mat-button class="ribbon-button" color="primary"><mat-icon>edit</mat-icon> Edit</button>
+                <button mat-button class="ribbon-button" color="primary"><mat-icon>sync</mat-icon> Sync</button>
+                <button mat-button class="ribbon-button" color="primary"><mat-icon>delete</mat-icon> Remove</button>
+                <button mat-button class="ribbon-button" color="primary"><mat-icon>expand</mat-icon> Expand</button>
+                <button mat-button class="ribbon-button" color="primary"
+                    [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon>
+                    More</button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                    <button mat-menu-item>Item 3</button>
+                    <button mat-menu-item>Item 4</button>
+                </mat-menu>
+                <span class="example-spacer"></span>
+                <button mat-button class="ribbon-button" color="primary">
+                    <mat-icon>filter_alt</mat-icon> Filter
+                </button>
+                <!-- </div> -->
+            </mat-toolbar>
+        </div>
+        <div class="all-padding-large scroll-container-main">
+            <!-- Form -->
+            <div class="full-width">
+                <h1>Form</h1>
+            </div>
+
+            <div class="full-width bottom-padding">
+                <form class="example-form">
+                    <div class="bootstrap-wrapper">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Company (disabled)</mat-label>
+                                        <input matInput disabled value="Google">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>First name</mat-label>
+                                        <input matInput>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Long Last Name That Will Be Truncated</mat-label>
+                                        <input matInput>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Address</mat-label>
+                                        <textarea matInput
+                                            placeholder="Ex. 100 Main St">1600 Amphitheatre Pkwy</textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Address 2</mat-label>
+                                        <textarea matInput></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>City</mat-label>
+                                        <input matInput placeholder="Ex. San Francisco">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>State</mat-label>
+                                        <input matInput placeholder="Ex. California">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Postal Code</mat-label>
+                                        <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" value="94043">
+                                        <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button mat-flat-button color="primary">SAVE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="full-width top-padding">
+                <h1>Table Items</h1>
+            </div>
+            <div class="full-width">
+                <mat-form-field>
+                    <mat-label>Filter</mat-label>
+                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+                </mat-form-field>
+            </div>
+            <div class="full-width">
+                <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)"
+                    class="">
+                    <!-- Checkbox Column -->
+                    <!-- Checkbox Column -->
+                    <ng-container matColumnDef="select">
+                        <th mat-header-cell *matHeaderCellDef>
+                            <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                [aria-label]="checkboxLabel()">
+                            </mat-checkbox>
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                            <mat-checkbox (click)="$event.stopPropagation()"
+                                (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                                [aria-label]="checkboxLabel(row)">
+                            </mat-checkbox>
+                        </td>
+                    </ng-container>
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number">
+                            No.
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                    </ng-container>
+
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+                            Name
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="weight">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+                            Weight
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+                    </ng-container>
+
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="symbol">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+                            Symbol
+                        </th>
+                        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+
+                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                    aria-label="Select page of periodic elements">
+                </mat-paginator>
+            </div>
+
+            <mat-divider></mat-divider>
+            <div class="full-width top-padding">
+                <h1>Steppers</h1>
+            </div>
+            <div class="full-width">
+                <mat-stepper orientation="vertical">
+                    <mat-step>
+                        <ng-template matStepLabel>Step 1</ng-template>
+                        <ng-template matStepContent>
+                            <p>This content was rendered lazily</p>
+                            <button mat-button matStepperNext>Next</button>
+                        </ng-template>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Step 2</ng-template>
+                        <ng-template matStepContent>
+                            <p>This content was also rendered lazily</p>
+                            <button mat-button matStepperPrevious>Back</button>
+                            <button mat-button matStepperNext>Next</button>
+                        </ng-template>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Step 3</ng-template>
+                        <p>This content was rendered eagerly</p>
+                        <button mat-button matStepperPrevious>Back</button>
+                    </mat-step>
+                </mat-stepper>
+            </div>
+        </div>
+    </div>
+
+</mat-drawer-container>
+<!-- End of Container -->

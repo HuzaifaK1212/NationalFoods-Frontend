@@ -1,0 +1,256 @@
+<!-- Header -->
+<mat-toolbar color="primary" class="app-toolbar">
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span class="logo"></span>
+    <span class="example-spacer"></span>
+    <div class="search-box">
+        <form role="search" class="in-suiteux-search-box">
+            <span role="none">
+                <button type="button" tabindex="-1" aria-hidden="true" class="search-btn">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </span>
+            <input role="combobox" type="search" aria-autocomplete="list" aria-owns="ms-searchux-popup-0" accesskey="S"
+                spellcheck="false" autocomplete="off" autocorrect="false" data-nav="true" data-tab="true"
+                maxlength="500" class="search-input" aria-expanded="false" placeholder="Search this site"
+                aria-label="Search box. Suggestions appear as you type.">
+            <div role="listbox" aria-busy="true" tabindex="-1" style="display: none;" class="search-result-box"
+                aria-label="Search suggestions">Search Results</div>
+        </form>
+    </div>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with user icon"
+        color="accent" [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>General Settings</button>
+        <button mat-menu-item>Account Settings</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>Profile</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>Logout</button>
+    </mat-menu>
+</mat-toolbar>
+<!-- End of Header -->
+
+<!-- Container -->
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a href="#" class="menu-item"><mat-icon>dashboard_customize</mat-icon> Dashboard</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Trademarks</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button mat-button class="menu-item"> Trademarks</button>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <div class="all-padding-large scroll-container-main bootstrap-wrapper">
+            <div class="full-width">
+                <h1>Add Trademark</h1>
+            </div>
+
+            <form [formGroup]="trademarkForm">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <!-- Title of Artwork -->
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Title of Artwork</mat-label>
+                                    <input matInput placeholder="Title of Artwork" required
+                                        formControlName="titleOfArtwork" [(ngModel)]="trademark.titleOfArtwork" 
+                                        (focus)="print()"/>
+                                    <mat-error
+                                        *ngIf="trademarkForm.controls['titleOfArtwork'].touched && trademarkForm.controls['titleOfArtwork'].errors">
+                                        Title of artwork is
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <!-- Registration No -->
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Registration No</mat-label>
+                                    <input matInput placeholder="Registration No" required
+                                        formControlName="registrationNo" [(ngModel)]="trademark.registrationNo" />
+                                    <mat-error
+                                        *ngIf="trademarkForm.controls['registrationNo'].touched && trademarkForm.controls['registrationNo'].errors">
+                                        Registration No is
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <!-- Date of Application -->
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Date of Application</mat-label>
+                                    <input matInput [matDatepicker]="picker" formControlName="dateOfApplication"
+                                        [min]="currentDate" [(ngModel)]="trademark.dateOfApplication" readonly required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    <mat-error *ngIf="trademarkForm.controls['dateOfApplication'].hasError('required')">
+                                        Date of Application is
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <!-- Name of Applicant -->
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Name of Applicant</mat-label>
+                                    <input matInput placeholder="Name of Applicant" required
+                                        formControlName="nameOfApplicant" [(ngModel)]="trademark.nameOfApplicant">
+                                    <mat-error
+                                        *ngIf="trademarkForm.controls['nameOfApplicant'].touched && trademarkForm.controls['nameOfApplicant'].errors">
+                                        Name of applicant is
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <!-- Date of Expiry -->
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Date of Expiry</mat-label>
+                                    <input matInput [matDatepicker]="picker1" formControlName="dateOfExpiry"
+                                        [min]="currentDate" [(ngModel)]="trademark.dateOfExpiry" readonly required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                    <mat-error *ngIf="trademarkForm.controls['dateOfExpiry'].hasError('required')">
+                                        Date of Expiry is
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <!-- Status -->
+                            <!-- <div class="col-sm-6">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Status</mat-label>
+                            <mat-select formControlName="statusId" [(ngModel)]="trademark.statusId">
+                                <mat-option *ngFor="let status of statusList" [value]="status.id">
+                                    {{ status?.name || "NA" }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error
+                                *ngIf="trademarkForm.controls['statusId'].touched && trademarkForm.controls['statusId'].errors">
+                                Contract Catgeory is
+                                <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                        </div> -->
+                            <!-- Notify days before expiry -->
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Notify days before Expiry</mat-label>
+                                    <input matInput placeholder="Notify days before Expiry" required
+                                        formControlName="notifyDaysBeforeExpiry"
+                                        [(ngModel)]="trademark.notifyDaysBeforeExpiry" />
+                                    <mat-error
+                                        *ngIf="trademarkForm.controls['notifyDaysBeforeExpiry'].touched && trademarkForm.controls['notifyDaysBeforeExpiry'].errors">
+                                        Notify days before Expiry is
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-sm-6">
+                <button mat-flat-button color="primary" (click)="upload()">
+                    Upload Artwork
+                </button>
+                </div> -->
+                    <div class="col-md-4 center-align">
+                        <iframe src="" frameborder="5"></iframe>
+                    </div>
+                </div>
+            </form>
+            <hr class="top-margin">
+            <h1>Comments</h1>
+            <form [formGroup]="commentForm">
+                <div class="col-md-10">
+                    <div class="row">
+                        <!-- Comment -->
+                        <div class="col-sm-5">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Comment</mat-label>
+                                <input matInput placeholder="Comment" formControlName="text"
+                                    [(ngModel)]="comment.text" />
+                            </mat-form-field>
+                        </div>
+                        <!-- Username -->
+                        <div class="col-sm-5">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>User</mat-label>
+                                <input matInput placeholder="User" formControlName="userName"
+                                    [(ngModel)]="comment.userName" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-2">
+                            <button mat-flat-button class="right-margin" color="accent" (click)="addComment()">Add</button>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <table mat-table [dataSource]="dataSource">
+
+                        <!--- Note that these columns can be defined in any order.
+                              The actual rendered columns are set as a property on the row definition" -->
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="sNo">
+                            <th mat-header-cell *matHeaderCellDef> S.No. </th>
+                            <td mat-cell *matCellDef="let element; let i = index;"> {{ (pageIndex * pageSize) + (i + 1) }} </td>
+                        </ng-container>
+
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="comment">
+                            <th mat-header-cell *matHeaderCellDef> Comment </th>
+                            <td mat-cell *matCellDef="let element"> {{ element.text || "NA"}} </td>
+                        </ng-container>
+
+                        <!-- Weight Column -->
+                        <ng-container matColumnDef="username">
+                            <th mat-header-cell *matHeaderCellDef> Username </th>
+                            <td mat-cell *matCellDef="let element"> {{element.userName || "NA"}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator #paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize"
+                        [pageSizeOptions]="pageSizeOptions">
+                    </mat-paginator>
+
+                </div>
+            </div>
+
+            <div class="full-width top-padding"></div>
+            <div class="row">
+                <div class="col-md-12 right-align">
+                    <button mat-flat-button class="right-margin" color="accent" (click)="back()">Cancel</button>
+                    <button mat-flat-button class="right-margin" color="primary"
+                        [disabled]="!trademarkForm.valid" (click)="update()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</mat-drawer-container>
