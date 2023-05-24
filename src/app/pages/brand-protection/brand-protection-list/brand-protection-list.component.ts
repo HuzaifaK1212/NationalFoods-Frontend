@@ -1,30 +1,28 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from 'src/app/core/services/config.service';
 import { MappingService } from 'src/app/core/services/mapping.service';
-import { Trademark } from 'src/app/core/services/models/trademark.model';
+import { BrandProtection } from 'src/app/core/services/models/brand-protection.model';
 
 @Component({
-  selector: 'app-trademark-list',
-  templateUrl: './trademark-list.component.html',
-  styleUrls: ['./trademark-list.component.scss']
+  selector: 'app-brand-protection-list',
+  templateUrl: './brand-protection-list.component.html',
+  styleUrls: ['./brand-protection-list.component.scss']
 })
-export class TrademarkListComponent implements AfterViewInit, OnInit {
+export class BrandProtectionListComponent implements OnInit {
+
   displayedColumns: string[] = [
     "select",
     'sNo',
-    'titleOfArtwork',
-    'imageOfArtwork',
-    'registrationNo',
-    'dateOfApplication',
-    'nameOfApplicant',
-    'dateOfExpiry',
-    'statusId',
-    'notifyDaysBeforeExpiry'
+    'name',
+    'year',
+    'city',
+    'brief',
+    'status'
   ];
   dataSource!: MatTableDataSource<any>;
   selection = new SelectionModel<any>(true, []);
@@ -50,7 +48,7 @@ export class TrademarkListComponent implements AfterViewInit, OnInit {
     // const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
   }
   ngOnInit(): void {
-    this.fetchTrademarks();
+    this.fetchBrandProtections();
   }
 
   ngAfterViewInit() {
@@ -67,15 +65,15 @@ export class TrademarkListComponent implements AfterViewInit, OnInit {
     }
   }
 
-  fetchTrademarks() {
+  fetchBrandProtections() {
     this.trademarks = [];
     this.dataSource = new MatTableDataSource(this.trademarks);
-    return this.configService.getTrademarks().subscribe((res: any) => {
+    return this.configService.getBrandProtections().subscribe((res: any) => {
       let tempList = res || [];
       let tList = [];
       if (tempList && tempList.length > 0) {
         for (let i = 0; i < tempList.length; i++) {
-          let tempItem = this.mappingService.mapTrademark(tempList[i]);
+          let tempItem = this.mappingService.mapBrandProtection(tempList[i]);
           tList.push(tempItem);
         }
         console.log(tList);
@@ -107,7 +105,7 @@ export class TrademarkListComponent implements AfterViewInit, OnInit {
     this.selection.select(...this.dataSource.data);
   }
 
-  checkboxLabel(row?: Trademark): string {
+  checkboxLabel(row?: BrandProtection): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
@@ -134,7 +132,7 @@ export class TrademarkListComponent implements AfterViewInit, OnInit {
         this.configService.deleteTrademark(id).subscribe((res: {}) => {
           if (res) {
             this.selection.clear();
-            this.fetchTrademarks();
+            this.fetchBrandProtections();
           } else {
             alert('Failed to delete record');
           }
@@ -146,5 +144,5 @@ export class TrademarkListComponent implements AfterViewInit, OnInit {
       alert('Error in selection. Invalid');
     }
   }
-}
 
+}

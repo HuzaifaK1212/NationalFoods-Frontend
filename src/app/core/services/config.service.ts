@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { retry, catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Trademark, TrademarkComment } from './models/Trademark.model';
+import { Trademark, TrademarkComment } from './models/trademark.model';
+import { BrandProtection } from './models/brand-protection.model';
 
 @Injectable({
     providedIn: 'root',
@@ -87,6 +88,80 @@ export class ConfigService {
         return this.httpClient
             .post<TrademarkComment>(
                 this.endpoint + '/trademark/comment/add',
+                body,
+                this.httpHeader
+            )
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+    // brand protection 
+
+    getBrandProtections(): Observable<BrandProtection> {
+        return this.httpClient
+            .get<BrandProtection>(this.endpoint + '/brand-protection/all')
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+    getBrandProtectionViaId(id: number): Observable<BrandProtection> {
+        return this.httpClient
+            .get<BrandProtection>(this.endpoint + '/brand-protection/' + id)
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+    addBrandProtection(data: any): Observable<BrandProtection> {
+        let body = {
+            Name: data.name || null,
+            Year: data.year || null,
+            City: data.city || null,
+            Brief: data.brief || null
+        };
+
+        return this.httpClient
+            .post<BrandProtection>(
+                this.endpoint + '/brand-protection/add',
+                body,
+                this.httpHeader
+            )
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+    updateBrandProtection(data: any): Observable<BrandProtection> {
+        let body = {
+            Id: data.id || 0,
+            Name: data.name || null,
+            Year: data.year || null,
+            City: data.city || null,
+            Brief: data.brief || null
+        };
+
+        return this.httpClient
+            .put<BrandProtection>(
+                this.endpoint + '/brand-protection/update',
+                body,
+                this.httpHeader
+            )
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+    deleteBrandProtection(id: number): Observable<number> {
+        return this.httpClient
+            .delete<number>(
+                this.endpoint + '/brand-protection/delete/' + id,
+                this.httpHeader
+            )
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+    addBrandProtectionProgress(data: any): Observable<BrandProtection> {
+        let body = {
+            Text: data.text,
+            UserName: data.userName,
+            BrandProtectionId: data.brandProtectionId
+        };
+
+        return this.httpClient
+            .post<BrandProtection>(
+                this.endpoint + '/brand-protection/progress/add',
                 body,
                 this.httpHeader
             )

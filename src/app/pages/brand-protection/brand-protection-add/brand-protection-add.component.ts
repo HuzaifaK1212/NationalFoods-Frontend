@@ -8,15 +8,14 @@ import { Observable } from 'rxjs/internal/Observable';
 import { ConfigService } from 'src/app/core/services/config.service';
 import { FileUploadService } from 'src/app/core/services/file-upload.service';
 import { MappingService } from 'src/app/core/services/mapping.service';
-import { Trademark, TrademarkComment } from 'src/app/core/services/models/trademark.model';
-
+import { BrandProtection, BrandProtectionProgress } from 'src/app/core/services/models/brand-protection.model';
 
 @Component({
-  selector: 'app-trademark-add',
-  templateUrl: './trademark-add.component.html',
-  styleUrls: ['./trademark-add.component.scss']
+  selector: 'app-brand-protection-add',
+  templateUrl: './brand-protection-add.component.html',
+  styleUrls: ['./brand-protection-add.component.scss']
 })
-export class TrademarkAddComponent implements OnInit {
+export class BrandProtectionAddComponent implements OnInit {
 
   selectedFiles?: FileList;
   selectedFileNames: string[] = [];
@@ -27,15 +26,15 @@ export class TrademarkAddComponent implements OnInit {
   previews: string[] = [];
   imageInfos?: Observable<any>;
 
-  trademark: Trademark = new Trademark();
+  trademark: BrandProtection = new BrandProtection();
   currentDate = new Date();
 
   tryDoctype: any;
 
-  comment: TrademarkComment = new TrademarkComment();
-  commentList: TrademarkComment[] = [];
+  comment: BrandProtectionProgress = new BrandProtectionProgress();
+  commentList: BrandProtectionProgress[] = [];
 
-  dataSource = new MatTableDataSource<TrademarkComment>();
+  dataSource = new MatTableDataSource<BrandProtectionProgress>();
 
   enable: boolean = false;
 
@@ -67,12 +66,10 @@ export class TrademarkAddComponent implements OnInit {
   ) { }
 
   trademarkForm = this._formBuilder.group({
-    titleOfArtwork: [this.trademark.titleOfArtwork, Validators.compose([Validators.required])],
-    registrationNo: [this.trademark.registrationNo, Validators.compose([Validators.required])],
-    dateOfApplication: [this.trademark.dateOfApplication, Validators.compose([Validators.required])],
-    nameOfApplicant: [this.trademark.nameOfApplicant, Validators.compose([Validators.required])],
-    dateOfExpiry: [this.trademark.dateOfExpiry, Validators.compose([Validators.required])],
-    notifyDaysBeforeExpiry: [this.trademark.notifyDaysBeforeExpiry, Validators.compose([Validators.required])]
+    name: [this.trademark.name, Validators.compose([Validators.required])],
+    year: [this.trademark.year, Validators.compose([Validators.required])],
+    city: [this.trademark.city, Validators.compose([Validators.required])],
+    brief: [this.trademark.brief, Validators.compose([Validators.required])],
   });
 
   commentForm = this._formBuilder.group({
@@ -90,24 +87,23 @@ export class TrademarkAddComponent implements OnInit {
   }
 
   back() {
-    this._router.navigate([".."]);
+    this._router.navigate(["/brand-protections"]);
   }
 
   async loadTrademarkViaId(id: number) {
     this.commentList = [];
     this.dataSource = new MatTableDataSource(this.commentList);
     try {
-      this.configService.getTrademarksViaId(id).subscribe((res: {}) => {
+      this.configService.getBrandProtectionViaId(id).subscribe((res: {}) => {
         if (res) {
-          this.trademark = this.mappingService.mapTrademark(res);
+          this.trademark = this.mappingService.mapBrandProtection(res);
 
           let tempList = [];
-          if (this.trademark.commentList && this.trademark.commentList.length > 0) {
-            this.commentList = this.trademark.commentList || null;
+          if (this.trademark.progressList && this.trademark.progressList.length > 0) {
+            this.commentList = this.trademark.progressList || null;
           }
           this.length = this.commentList.length || 0;
           this.dataSource = new MatTableDataSource(this.commentList);
-          console.log(this.dataSource)
           // let _type = this.function('png');
           // const blob = new Blob([this.trademark.imageOfArtwork], { type: _type });
           // let fileURL = URL.createObjectURL(blob);
@@ -117,7 +113,7 @@ export class TrademarkAddComponent implements OnInit {
           // // this.tryDoctype = this.sanitizer.bypassSecurityTrustResourceUrl(fileURL);
           // console.log(this.tryDoctype)
         } else {
-          console.log
+          console.log();
         }
       });
     } catch (error) {
@@ -127,7 +123,7 @@ export class TrademarkAddComponent implements OnInit {
 
   async add() {
     try {
-      this.configService.addTrademark(this.trademark).subscribe((res: {}) => {
+      this.configService.addBrandProtection(this.trademark).subscribe((res: {}) => {
         if (res) {
           this._router.navigate(["trademarks"]);
         } else {
@@ -142,7 +138,7 @@ export class TrademarkAddComponent implements OnInit {
   async update() {
     try {
       if (this.trademarkForm.valid) {
-        this.configService.updateTrademark(this.trademark).subscribe((res: {}) => {
+        this.configService.updateBrandProtection(this.trademark).subscribe((res: {}) => {
           if (res) {
             this._router.navigate(['trademarks']);
           } else {
@@ -159,13 +155,14 @@ export class TrademarkAddComponent implements OnInit {
 
   async addComment() {
     if (this.commentForm.valid && this.comment.text && this.comment.text.length > 0) {
-      this.comment.trademarkId = this.trademark.id;
+      this.comment.brandProtectionId = this.trademark.id;
       try {
-        this.configService.addTrademarkComment(this.comment).subscribe((res: {}) => {
+        this.configService.addBrandProtectionProgress(this.comment).subscribe((res: {}) => {
           if (res) {
             this.trademarkForm.reset;
             this.commentForm.reset;
-            this.comment = new TrademarkComment();
+            this.comment = new BrandProtectionProgress();
+            this.comment.userName = "Huzaifa Khatri"
             this.loadTrademarkViaId(this.trademark.id);
           } else {
             alert('Failed to add record');

@@ -54,6 +54,8 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <button mat-button class="menu-item"> Trademarks</button>
+                <br>
+                <button routerLink="/brand-protections" mat-button class="menu-item"> Brand Protections</button>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-drawer>
@@ -61,7 +63,7 @@
     <div class="example-sidenav-content">
         <div class="all-padding-large scroll-container-main bootstrap-wrapper">
             <div class="full-width">
-                <h1>Add Trademark</h1>
+                <h1>Add Brand Protection</h1>
             </div>
 
             <form [formGroup]="trademarkForm">
@@ -71,13 +73,13 @@
                             <!-- Title of Artwork -->
                             <div class="col-sm-6">
                                 <mat-form-field class="example-full-width">
-                                    <mat-label>Title of Artwork</mat-label>
-                                    <input matInput placeholder="Title of Artwork" required
-                                        formControlName="titleOfArtwork" [(ngModel)]="trademark.titleOfArtwork" 
-                                        (focus)="print()"/>
+                                    <mat-label>Name</mat-label>
+                                    <input matInput placeholder="Name" required
+                                        formControlName="name" [(ngModel)]="trademark.name"
+                                        (focus)="print()" />
                                     <mat-error
-                                        *ngIf="trademarkForm.controls['titleOfArtwork'].touched && trademarkForm.controls['titleOfArtwork'].errors">
-                                        Title of artwork is
+                                        *ngIf="trademarkForm.controls['name'].touched && trademarkForm.controls['name'].errors">
+                                        Name is
                                         <strong>required</strong>
                                     </mat-error>
                                 </mat-form-field>
@@ -85,26 +87,12 @@
                             <!-- Registration No -->
                             <div class="col-sm-6">
                                 <mat-form-field class="example-full-width">
-                                    <mat-label>Registration No</mat-label>
-                                    <input matInput placeholder="Registration No" required
-                                        formControlName="registrationNo" [(ngModel)]="trademark.registrationNo" />
+                                    <mat-label>Year</mat-label>
+                                    <input matInput placeholder="Year" required
+                                        formControlName="year" [(ngModel)]="trademark.year" />
                                     <mat-error
-                                        *ngIf="trademarkForm.controls['registrationNo'].touched && trademarkForm.controls['registrationNo'].errors">
-                                        Registration No is
-                                        <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <!-- Date of Application -->
-                            <div class="col-sm-6">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Date of Application</mat-label>
-                                    <input matInput [matDatepicker]="picker" formControlName="dateOfApplication"
-                                        [min]="currentDate" [(ngModel)]="trademark.dateOfApplication" readonly required>
-                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker></mat-datepicker>
-                                    <mat-error *ngIf="trademarkForm.controls['dateOfApplication'].hasError('required')">
-                                        Date of Application is
+                                        *ngIf="trademarkForm.controls['year'].touched && trademarkForm.controls['year'].errors">
+                                        Year is
                                         <strong>required</strong>
                                     </mat-error>
                                 </mat-form-field>
@@ -112,60 +100,31 @@
                             <!-- Name of Applicant -->
                             <div class="col-sm-6">
                                 <mat-form-field class="example-full-width">
-                                    <mat-label>Name of Applicant</mat-label>
-                                    <input matInput placeholder="Name of Applicant" required
-                                        formControlName="nameOfApplicant" [(ngModel)]="trademark.nameOfApplicant">
+                                    <mat-label>City</mat-label>
+                                    <input matInput placeholder="City" required
+                                        formControlName="city" [(ngModel)]="trademark.city">
                                     <mat-error
-                                        *ngIf="trademarkForm.controls['nameOfApplicant'].touched && trademarkForm.controls['nameOfApplicant'].errors">
-                                        Name of applicant is
+                                        *ngIf="trademarkForm.controls['city'].touched && trademarkForm.controls['city'].errors">
+                                        City is
                                         <strong>required</strong>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
-                            <!-- Date of Expiry -->
+                            <!-- Name of Applicant -->
                             <div class="col-sm-6">
                                 <mat-form-field class="example-full-width">
-                                    <mat-label>Date of Expiry</mat-label>
-                                    <input matInput [matDatepicker]="picker1" formControlName="dateOfExpiry"
-                                        [min]="currentDate" [(ngModel)]="trademark.dateOfExpiry" readonly required>
-                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker1></mat-datepicker>
-                                    <mat-error *ngIf="trademarkForm.controls['dateOfExpiry'].hasError('required')">
-                                        Date of Expiry is
-                                        <strong>required</strong>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <!-- Status -->
-                            <!-- <div class="col-sm-6">
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Status</mat-label>
-                            <mat-select formControlName="statusId" [(ngModel)]="trademark.statusId">
-                                <mat-option *ngFor="let status of statusList" [value]="status.id">
-                                    {{ status?.name || "NA" }}
-                                </mat-option>
-                            </mat-select>
-                            <mat-error
-                                *ngIf="trademarkForm.controls['statusId'].touched && trademarkForm.controls['statusId'].errors">
-                                Contract Catgeory is
-                                <strong>required</strong>
-                            </mat-error>
-                        </mat-form-field>
-                        </div> -->
-                            <!-- Notify days before expiry -->
-                            <div class="col-sm-6">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Notify days before Expiry</mat-label>
-                                    <input matInput placeholder="Notify days before Expiry" required
-                                        formControlName="notifyDaysBeforeExpiry"
-                                        [(ngModel)]="trademark.notifyDaysBeforeExpiry" />
+                                    <mat-label>Brief</mat-label>
+                                    <textarea matInput placeholder="Brief" required
+                                        formControlName="brief" [(ngModel)]="trademark.brief">
                                     <mat-error
-                                        *ngIf="trademarkForm.controls['notifyDaysBeforeExpiry'].touched && trademarkForm.controls['notifyDaysBeforeExpiry'].errors">
-                                        Notify days before Expiry is
+                                        *ngIf="trademarkForm.controls['brief'].touched && trademarkForm.controls['brief'].errors">
+                                        Brief is
                                         <strong>required</strong>
                                     </mat-error>
+                                    </textarea>
                                 </mat-form-field>
                             </div>
+
                         </div>
                     </div>
                     <!-- <div class="col-sm-6">
@@ -173,13 +132,13 @@
                     Upload Artwork
                 </button>
                 </div> -->
-                    <div class="col-md-4 center-align">
+                    <!-- <div class="col-md-4 center-align">
                         <iframe src="" frameborder="5"></iframe>
-                    </div>
+                    </div> -->
                 </div>
             </form>
             <hr class="top-margin">
-            <h1>Comments</h1>
+            <h1>Progress</h1>
             <form [formGroup]="commentForm">
                 <div class="col-md-10">
                     <div class="row">
@@ -200,7 +159,8 @@
                             </mat-form-field>
                         </div>
                         <div class="col-sm-2">
-                            <button mat-flat-button class="right-margin" color="accent" (click)="addComment()">Add</button>
+                            <button mat-flat-button class="right-margin" color="accent"
+                                (click)="addComment()">Add</button>
 
                         </div>
                     </div>
@@ -217,7 +177,8 @@
                         <!-- Position Column -->
                         <ng-container matColumnDef="sNo">
                             <th mat-header-cell *matHeaderCellDef> Date </th>
-                            <td mat-cell *matCellDef="let element; let i = index;"> {{ (element.createdOn | date:'dd-MMM-yyy' || "NA") }} </td>
+                            <td mat-cell *matCellDef="let element;"> {{ (element.createdOn | date:'dd-MMM-yyy' || "NA")
+                                }} </td>
                         </ng-container>
 
                         <!-- Name Column -->
@@ -246,8 +207,8 @@
             <div class="row">
                 <div class="col-md-12 right-align">
                     <button mat-flat-button class="right-margin" color="accent" (click)="back()">Cancel</button>
-                    <button mat-flat-button class="right-margin" color="primary"
-                        [disabled]="!trademarkForm.valid" (click)="id ? update() : add()">Save</button>
+                    <button mat-flat-button class="right-margin" color="primary" [disabled]="!trademarkForm.valid"
+                        (click)="id ? update() : add()">Save</button>
                 </div>
             </div>
         </div>

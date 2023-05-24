@@ -1,7 +1,8 @@
 import { DatePipe } from "@angular/common";
-import { Trademark, TrademarkComment } from "./models/Trademark.model";
+import { Trademark, TrademarkComment } from "./models/trademark.model";
 import { Status } from "./models/base.model";
 import { Injectable } from "@angular/core";
+import { BrandProtection, BrandProtectionProgress } from "./models/brand-protection.model";
 
 @Injectable({
     providedIn: 'root',
@@ -10,7 +11,7 @@ export class MappingService {
 
     constructor(
         private datePipe: DatePipe
-    ) {}
+    ) { }
 
     public mapTrademark(res: any): Trademark {
         const resData = res ? res : null
@@ -31,10 +32,10 @@ export class MappingService {
             isTrademark.statusId = resData.statusId || null;
             isTrademark.status = resData.statusId && resData.status ? this.mapStatus(resData.status) : null;
             isTrademark.notifyDaysBeforeExpiry = resData.notifyDaysBeforeExpiry || null;
-            
+
             if (resData.commentList && resData.commentList.length > 0) {
                 let tempList = [];
-                for(let i = 0; i < resData.commentList.length; i++) {
+                for (let i = 0; i < resData.commentList.length; i++) {
                     let temp = this.mapComment(resData.commentList[i]);
                     tempList.push(temp);
                 }
@@ -44,6 +45,37 @@ export class MappingService {
         }
 
         return isTrademark;
+    }
+
+    public mapBrandProtection(res: any): BrandProtection {
+        const resData = res ? res : null;
+        const isBrandProtection = new BrandProtection();
+        if (resData) {
+            isBrandProtection.id = resData.id || null;
+            isBrandProtection.createdOn = resData.createdOn ? this.datePipe.transform(resData.createdOn, 'yyyy-MMM-dd') : null;
+            isBrandProtection.createdBy = resData.createdBy || null;
+            isBrandProtection.updatedBy = resData.updatedBy || null;
+            isBrandProtection.updatedOn = resData.updatedOn ? this.datePipe.transform(resData.updatedOn, 'yyyy-MMM-dd') : null;
+            isBrandProtection.active = resData.active || null;
+            isBrandProtection.name = resData.name || null;
+            isBrandProtection.year = resData.year || null;
+            isBrandProtection.city = resData.city || null;
+            isBrandProtection.brief = resData.brief || null;
+            isBrandProtection.statusId = resData.statusId || null;
+            isBrandProtection.status = resData.statusId && resData.status ? this.mapStatus(resData.status) : null;
+            
+            if (resData.progressList && resData.progressList.length > 0) {
+                let tempList = [];
+                for (let i = 0; i < resData.progressList.length; i++) {
+                    let temp = this.mapProgress(resData.progressList[i]);
+                    tempList.push(temp);
+                }
+
+                isBrandProtection.progressList = tempList;
+            }
+        }
+
+        return isBrandProtection;
     }
 
     public mapStatus(res: any): Status {
@@ -77,4 +109,20 @@ export class MappingService {
         }
         return isComment;
     }
- }
+
+    public mapProgress(res: any): BrandProtectionProgress {
+        const resData = res ? res : null;
+        const isProgress = new BrandProtectionProgress();
+        if (resData) {
+            isProgress.id = resData.id || null;
+            isProgress.createdOn = resData.createdOn ? this.datePipe.transform(resData.createdOn, 'yyyy-MMM-dd') : null;
+            isProgress.createdBy = resData.createdBy || null;
+            isProgress.updatedBy = resData.updatedBy || null;
+            isProgress.updatedOn = resData.updatedOn ? this.datePipe.transform(resData.updatedOn, 'yyyy-MMM-dd') : null;
+            isProgress.active = resData.active || null;
+            isProgress.text = resData.text || null;
+            isProgress.userName = resData.userName || null;
+        }
+        return isProgress;
+    }
+}

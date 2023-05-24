@@ -53,9 +53,9 @@
                         <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Trademarks</a>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <button mat-button class="menu-item"> Trademarks</button>
+                <button routerLink="/trademarks" mat-button class="menu-item"> Trademarks</button>
                 <br>
-                <button routerLink="/brand-protections" mat-button class="menu-item"> Brand Protections</button>
+                <button mat-button class="menu-item"> Brand Protections</button>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-drawer>
@@ -89,7 +89,7 @@
         <div class="all-padding-large scroll-container-main">
             <!--  -->
             <div class="full-width">
-                <h1>Trademarks</h1>
+                <h1>Brand Protections</h1>
             </div>
             <mat-form-field appearance="standard">
                 <mat-label>Filter</mat-label>
@@ -115,68 +115,52 @@
                         </td>
                     </ng-container>
 
+                    <!-- "select",
+                    'sNo',
+                    'name',
+                    'year',
+                    'city',
+                    'brief',
+                    'status' -->
+
                     <!-- ID Column -->
                     <ng-container matColumnDef="sNo">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> S.No </th>
-                        <td mat-cell *matCellDef="let row; let i = index;"> 
+                        <td mat-cell *matCellDef="let row; let i = index;">
                             {{ (pageIndex * pageSize) + (i + 1) }} </td>
                     </ng-container>
 
-                    <!-- Title of artwork Column -->
-                    <ng-container matColumnDef="titleOfArtwork">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Title of Artwork </th>
-                        <td mat-cell *matCellDef="let row"> 
-                            {{ row.titleOfArtwork || "NA" }} </td>
-                    </ng-container>
-
-                    <!-- Image of artwork Column -->
-                    <ng-container matColumnDef="imageOfArtwork">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Image of Artwork </th>
-                        <td mat-cell *matCellDef="let row"> 
-                            <a href="#myPopup" data-rel="popup" data-position-to="window">
-                            <img src="{{row.imageOfArtwork}}" alt="img" style="width:100px;"></a>
-                    </ng-container>
-
-                    <!-- registration no Column -->
-                    <ng-container matColumnDef="registrationNo">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Registration No </th>
-                        <td mat-cell *matCellDef="let row"> 
-                            {{ row.registrationNo || "NA" }} </td>
-                    </ng-container>
-
-                    <!-- date of application Column -->
-                    <ng-container matColumnDef="dateOfApplication">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date of Application </th>
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
                         <td mat-cell *matCellDef="let row">
-                            {{ (row.dateOfApplication | date:'dd-MMM-yyyy') || "NA" }} </td>
+                            {{ row.name || "NA" }} </td>
                     </ng-container>
 
-                    <!-- name of applicant Column -->
-                    <ng-container matColumnDef="nameOfApplicant">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name of Applicant </th>
-                        <td mat-cell *matCellDef="let row"> 
-                            {{ row.nameOfApplicant || "NA" }} </td>
+                    <ng-container matColumnDef="year">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Year </th>
+                        <td mat-cell *matCellDef="let row">
+                            {{ row.year || "NA" }} </td>
                     </ng-container>
 
-                    <!-- date of expiry Column -->
-                    <ng-container matColumnDef="dateOfExpiry">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date of Expiry </th>
-                        <td mat-cell *matCellDef="let row"> 
-                            {{ (row.dateOfExpiry | date:'dd-MMM-yyyy') || "NA" }} </td>
+                    <ng-container matColumnDef="city">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> City </th>
+                        <td mat-cell *matCellDef="let row">
+                            {{ row.city || "NA" }} </td>
                     </ng-container>
 
-                    <!-- status Column -->
-                    <ng-container matColumnDef="statusId">
+                    <ng-container matColumnDef="brief">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Brief </th>
+                        <td mat-cell *matCellDef="let row">
+                            <div style="width: 80%;word-wrap: break-word;">
+                                {{ row.brief || "NA" }}
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-                        <td mat-cell *matCellDef="let row"> 
-                            {{ row.status?.name || "NA" }} </td>
-                    </ng-container>
-
-                    <!-- Notify days before expiry Column -->
-                    <ng-container matColumnDef="notifyDaysBeforeExpiry">
-                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Notify days before expiry </th>
-                        <td mat-cell *matCellDef="let row"> 
-                            {{ row.notifyDaysBeforeExpiry || "NA" }} </td>
+                        <td mat-cell *matCellDef="let row">
+                            {{ row?.status?.name || "NA" }} </td>
                     </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

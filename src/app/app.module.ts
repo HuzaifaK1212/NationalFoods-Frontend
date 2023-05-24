@@ -39,6 +39,8 @@ import { MappingService } from './core/services/mapping.service';
 import { ConfigService } from './core/services/config.service';
 import { DatePipe } from '@angular/common';
 import { TrademarkAddComponent } from './pages/trademark/trademark-add/trademark-add.component';
+import { BrandProtectionListComponent } from './pages/brand-protection/brand-protection-list/brand-protection-list.component';
+import { BrandProtectionAddComponent } from './pages/brand-protection/brand-protection-add/brand-protection-add.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -46,7 +48,9 @@ import { TrademarkAddComponent } from './pages/trademark/trademark-add/trademark
     AppComponent,
     TemplateComponent,
     TrademarkListComponent,
-    TrademarkAddComponent
+    TrademarkAddComponent,
+    BrandProtectionListComponent,
+    BrandProtectionAddComponent
   ],
   imports: [
     BrowserModule,

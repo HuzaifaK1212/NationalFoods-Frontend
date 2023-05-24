@@ -138,7 +138,8 @@ table {
 .app-toolbar {
   position: sticky;
   position: -webkit-sticky;
-  top: 0; /* required */
+  top: 0;
+  /* required */
   z-index: 2;
 }
 
@@ -296,6 +297,7 @@ a.menu-item .mat-icon {
 .align-item-center {
   align-items: center;
 }
+
 .top-margin {
   margin-top: 15px !important;
 }
