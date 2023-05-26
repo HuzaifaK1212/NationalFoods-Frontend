@@ -78,7 +78,6 @@ export class TrademarkListComponent implements AfterViewInit, OnInit {
           let tempItem = this.mappingService.mapTrademark(tempList[i]);
           tList.push(tempItem);
         }
-        console.log(tList);
         this.trademarks = tList;
       } else {
         this.trademarks = [];

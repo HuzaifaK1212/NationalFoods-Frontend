@@ -5,6 +5,7 @@ import { TrademarkListComponent } from './pages/trademark/trademark-list/tradema
 import { TrademarkAddComponent } from './pages/trademark/trademark-add/trademark-add.component';
 import { BrandProtectionListComponent } from './pages/brand-protection/brand-protection-list/brand-protection-list.component';
 import { BrandProtectionAddComponent } from './pages/brand-protection/brand-protection-add/brand-protection-add.component';
+import { SchedulerComponent } from './pages/scheduler/scheduler.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,10 @@ const routes: Routes = [
   {
     path: 'brand-protections/edit/:id',
     component: BrandProtectionAddComponent
+  },
+  {
+    path: 'scheduler',
+    component: SchedulerComponent
   }
 ];
 

@@ -41,6 +41,11 @@ import { DatePipe } from '@angular/common';
 import { TrademarkAddComponent } from './pages/trademark/trademark-add/trademark-add.component';
 import { BrandProtectionListComponent } from './pages/brand-protection/brand-protection-list/brand-protection-list.component';
 import { BrandProtectionAddComponent } from './pages/brand-protection/brand-protection-add/brand-protection-add.component';
+import { SchedulerComponent } from './pages/scheduler/scheduler.component';
+import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
+import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
+import { MultiSelectComponent } from '@syncfusion/ej2-angular-dropdowns';
+import { SafePipe } from './core/shared/safepipe';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -50,7 +55,8 @@ import { BrandProtectionAddComponent } from './pages/brand-protection/brand-prot
     TrademarkListComponent,
     TrademarkAddComponent,
     BrandProtectionListComponent,
-    BrandProtectionAddComponent
+    BrandProtectionAddComponent,
+    SchedulerComponent
   ],
   imports: [
     BrowserModule,
@@ -79,12 +85,15 @@ import { BrandProtectionAddComponent } from './pages/brand-protection/brand-prot
     MatStepperModule,
     HttpClientModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ScheduleModule,
+    DropDownButtonModule
   ],
   providers: [
     MappingService,
     ConfigService,
-    DatePipe
+    DatePipe,
+    SafePipe
   ],
   bootstrap: [AppComponent]
 })

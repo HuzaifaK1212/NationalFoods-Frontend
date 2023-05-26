@@ -242,4 +242,9 @@ export class TrademarkAddComponent implements OnInit {
     console.log(this.trademarkForm);
   }
 
+  fetchPhotoURL() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.trademark.imageOfArtwork);
+  }
+
 }
+ 

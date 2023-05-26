@@ -73,8 +73,8 @@
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Title of Artwork</mat-label>
                                     <input matInput placeholder="Title of Artwork" required
-                                        formControlName="titleOfArtwork" [(ngModel)]="trademark.titleOfArtwork" 
-                                        (focus)="print()"/>
+                                        formControlName="titleOfArtwork" [(ngModel)]="trademark.titleOfArtwork"
+                                        (focus)="print()" />
                                     <mat-error
                                         *ngIf="trademarkForm.controls['titleOfArtwork'].touched && trademarkForm.controls['titleOfArtwork'].errors">
                                         Title of artwork is
@@ -173,8 +173,40 @@
                     Upload Artwork
                 </button>
                 </div> -->
-                    <div class="col-md-4 center-align">
-                        <iframe src="" frameborder="5"></iframe>
+                    <style>
+                        #wrap {
+                            width: 500px;
+                            height: 500px;
+                            padding: 0;
+                            overflow: hidden;
+                        }
+
+                        #scaled-frame {
+                            width: 620px;
+                            height: 600px;
+                            border: 0px;
+                            overflow: hidden;
+                        }
+
+                        #scaled-frame {
+                            zoom: 0.50;
+                            -moz-transform: scale(0.75);
+                            -moz-transform-origin: 0 0;
+                            -o-transform: scale(0.75);
+                            -o-transform-origin: 0 0;
+                            -webkit-transform: scale(0.5);
+                            -webkit-transform-origin: 0 0;
+                        }
+
+                        @media screen and (-webkit-min-device-pixel-ratio:0) {
+                            #scaled-frame {
+                                zoom: 1;
+                            }
+                        }
+                    </style>
+
+                    <div class="col-md-4 center-align" style="max-height: 295px;">
+                        <iframe id="scaled-frame" class="center-align" [src]="fetchPhotoURL()" frameborder="5"></iframe>
                     </div>
                 </div>
             </form>
@@ -200,7 +232,8 @@
                             </mat-form-field>
                         </div>
                         <div class="col-sm-2">
-                            <button mat-flat-button class="right-margin" color="accent" (click)="addComment()">Add</button>
+                            <button mat-flat-button class="right-margin" color="accent"
+                                (click)="addComment()">Add</button>
 
                         </div>
                     </div>
@@ -217,7 +250,8 @@
                         <!-- Position Column -->
                         <ng-container matColumnDef="sNo">
                             <th mat-header-cell *matHeaderCellDef> Date </th>
-                            <td mat-cell *matCellDef="let element; let i = index;"> {{ (element.createdOn | date:'dd-MMM-yyy' || "NA") }} </td>
+                            <td mat-cell *matCellDef="let element; let i = index;"> {{ (element.createdOn |
+                                date:'dd-MMM-yyy' || "NA") }} </td>
                         </ng-container>
 
                         <!-- Name Column -->
@@ -246,8 +280,8 @@
             <div class="row">
                 <div class="col-md-12 right-align">
                     <button mat-flat-button class="right-margin" color="accent" (click)="back()">Cancel</button>
-                    <button mat-flat-button class="right-margin" color="primary"
-                        [disabled]="!trademarkForm.valid" (click)="id ? update() : add()">Save</button>
+                    <button mat-flat-button class="right-margin" color="primary" [disabled]="!trademarkForm.valid"
+                        (click)="id ? update() : add()">Save</button>
                 </div>
             </div>
         </div>
