@@ -245,17 +245,6 @@ td {
 
 // Menu (Side Nav)
 
-a.menu-item {
-  color: inherit;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-a.menu-item .mat-icon {
-  vertical-align: middle;
-  margin-right: 10px;
-}
-
 .mat-accordion .mat-expansion-panel:last-of-type {
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0px;
@@ -312,4 +301,20 @@ a.menu-item .mat-icon {
 
 .right-margin {
   margin-right: 15px !important;
+}
+
+a.menu-item {
+  color: inherit;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+a.menu-item .mat-icon {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.menu-subitem-container {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  overflow: hidden;
 }

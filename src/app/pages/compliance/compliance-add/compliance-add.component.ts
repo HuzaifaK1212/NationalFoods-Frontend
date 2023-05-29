@@ -48,15 +48,13 @@ export class ComplianceAddComponent implements OnInit {
   ];
 
   lawList = [
-    "First Law",
-    "Second Law",
-    "Third Law",
+    "Tax Filing",
+    "Financial Statement"
   ];
 
   authorityList = [
-    "First Authority",
-    "Second Authority",
-    "Third Authority"
+    "FBR",
+    "SECP",
   ];
 
   occurrences = [];

@@ -40,7 +40,7 @@
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="over">
         <mat-accordion>
-            <mat-expansion-panel hideToggle >
+            <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <a href="#" class="menu-item"><mat-icon>dashboard_customize</mat-icon> Dashboard</a>
@@ -50,45 +50,39 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Trademarks</a>
+                        <a class="menu-item"><mat-icon>gavel</mat-icon> Legal</a>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <button routerLink="/trademarks" mat-button class="menu-item"> Trademarks</button>
+                <div class="menu-subitem-container">
+                    <!-- <button routerLink="/trademarks" mat-button
+                        class="menu-item"><mat-icon>playlist_add_check_circle</mat-icon> Trademarks</button><br> -->
+                        <a routerLink="/trademarks" class="menu-item" mat-menu-item><mat-icon color="primary">playlist_add_check_circle</mat-icon> Trademarks</a>
+                        <a routerLink="/brand-protections" class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> Brand Protections</a>
+                    <!-- <button mat-button class="menu-item"><mat-icon>privacy_tip</mat-icon> Brand Protections</button><br> -->
+                </div>
             </mat-expansion-panel>
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Brand Protections</a>
+                        <a class="menu-item"><mat-icon>payments</mat-icon> Finance</a>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <button routerLink="/brand-protections" mat-button class="menu-item"> Brand Protections</button>
-            </mat-expansion-panel>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Compliance</a>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <button routerLink="/compliances" mat-button class="menu-item"> Compliances</button>
-            </mat-expansion-panel>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Sales Tax</a>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <button routerLink="/sales-taxes" mat-button class="menu-item"> Sales Taxes</button>
-            </mat-expansion-panel>
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Withholding Tax</a>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <button routerLink="/withholding-taxes" mat-button class="menu-item"> Withholding Taxes</button>
+                <div class="menu-subitem-container">
+                    <!-- <button routerLink="/compliances" mat-button class="menu-item"><mat-icon>fact_check</mat-icon>
+                        Compliances</button><br> -->
+                        <a routerLink="/compliances" class="menu-item" mat-menu-item><mat-icon color="primary">fact_check</mat-icon> Compliances</a>
+                        <a routerLink="/sales-taxes" class="menu-item" mat-menu-item><mat-icon color="primary">price_change</mat-icon> Sales Taxes</a>
+                        <a routerLink="/withholding-taxes" class="menu-item" mat-menu-item><mat-icon color="primary">request_quote</mat-icon> Withholding Taxes</a>
+
+                    <!-- <button routerLink="/sales-taxes" mat-button class="menu-item"><mat-icon>price_change</mat-icon>
+                        Sales Taxes</button><br>
+                    <button routerLink="/withholding-taxes" mat-button
+                        class="menu-item"><mat-icon>request_quote</mat-icon> Withholding Taxes</button> -->
+                </div>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-drawer>
+
 
     <div class="example-sidenav-content">
         <div class="all-padding-large scroll-container-main bootstrap-wrapper">
