@@ -40,7 +40,7 @@
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="over">
         <mat-accordion>
-            <mat-expansion-panel hideToggle >
+            <mat-expansion-panel hideToggle>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <a href="#" class="menu-item"><mat-icon>dashboard_customize</mat-icon> Dashboard</a>
@@ -93,151 +93,89 @@
     <div class="example-sidenav-content">
         <div class="all-padding-large scroll-container-main bootstrap-wrapper">
             <div class="full-width">
-                <h1>Add Brand Protection</h1>
+                <h1>Add Withholding Tax</h1>
             </div>
 
-            <form [formGroup]="trademarkForm">
+            <form [formGroup]="mainForm">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="row">
-                            <!-- Title of Artwork -->
+
                             <div class="col-sm-6">
                                 <mat-form-field class="example-full-width">
-                                    <mat-label>Name</mat-label>
-                                    <input matInput placeholder="Name" required
-                                        formControlName="name" [(ngModel)]="trademark.name"
-                                        (focus)="print()" />
+                                    <mat-label>Accounting Years</mat-label>
+                                    <input matInput matInput placeholder="Accounting Years" required formControlName="accountingYears"
+                                        [(ngModel)]="item.accountingYears" />
                                     <mat-error
-                                        *ngIf="trademarkForm.controls['name'].touched && trademarkForm.controls['name'].errors">
-                                        Name is
+                                        *ngIf="mainForm.controls['accountingYears'].touched && mainForm.controls['accountingYears'].errors">
+                                        Account years is
                                         <strong>required</strong>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
-                            <!-- Registration No -->
+
                             <div class="col-sm-6">
                                 <mat-form-field class="example-full-width">
-                                    <mat-label>Year</mat-label>
-                                    <input matInput placeholder="Year" required
-                                        formControlName="year" [(ngModel)]="trademark.year" />
+                                    <mat-label>Demand Assessed</mat-label>
+                                    <input matInput matInput placeholder="Demand Assessed" required formControlName="demandAssessed"
+                                        [(ngModel)]="item.demandAssessed" />
                                     <mat-error
-                                        *ngIf="trademarkForm.controls['year'].touched && trademarkForm.controls['year'].errors">
-                                        Year is
+                                        *ngIf="mainForm.controls['demandAssessed'].touched && mainForm.controls['demandAssessed'].errors">
+                                        Demand Assessed is
                                         <strong>required</strong>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
-                            <!-- Name of Applicant -->
+
                             <div class="col-sm-6">
                                 <mat-form-field class="example-full-width">
-                                    <mat-label>City</mat-label>
-                                    <input matInput placeholder="City" required
-                                        formControlName="city" [(ngModel)]="trademark.city">
+                                    <mat-label>Demand Paid</mat-label>
+                                    <input matInput matInput placeholder="Demand Paid" required formControlName="demandPaid"
+                                        [(ngModel)]="item.demandPaid" />
                                     <mat-error
-                                        *ngIf="trademarkForm.controls['city'].touched && trademarkForm.controls['city'].errors">
-                                        City is
+                                        *ngIf="mainForm.controls['demandPaid'].touched && mainForm.controls['demandPaid'].errors">
+                                        Demand Paid is
                                         <strong>required</strong>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
-                            <!-- Name of Applicant -->
+
                             <div class="col-sm-6">
                                 <mat-form-field class="example-full-width">
-                                    <mat-label>Brief</mat-label>
-                                    <textarea matInput placeholder="Brief" required
-                                        formControlName="brief" [(ngModel)]="trademark.brief">
+                                    <mat-label>Comments</mat-label>
+                                    <input matInput matInput placeholder="Comments" required formControlName="comments"
+                                        [(ngModel)]="item.comments" />
                                     <mat-error
-                                        *ngIf="trademarkForm.controls['brief'].touched && trademarkForm.controls['brief'].errors">
-                                        Brief is
+                                        *ngIf="mainForm.controls['comments'].touched && mainForm.controls['comments'].errors">
+                                        Comments are
                                         <strong>required</strong>
                                     </mat-error>
-                                    </textarea>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Action Point</mat-label>
+                                    <input matInput matInput placeholder="Action Point" required formControlName="actionPoint"
+                                        [(ngModel)]="item.actionPoint" />
+                                    <mat-error
+                                        *ngIf="mainForm.controls['actionPoint'].touched && mainForm.controls['actionPoint'].errors">
+                                        Action Point is
+                                        <strong>required</strong>
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
 
                         </div>
                     </div>
-                    <!-- <div class="col-sm-6">
-                <button mat-flat-button color="primary" (click)="upload()">
-                    Upload Artwork
-                </button>
-                </div> -->
-                    <!-- <div class="col-md-4 center-align">
-                        <iframe src="" frameborder="5"></iframe>
-                    </div> -->
                 </div>
             </form>
-            <hr class="top-margin">
-            <h1>Progress</h1>
-            <form [formGroup]="commentForm">
-                <div class="col-md-10">
-                    <div class="row">
-                        <!-- Comment -->
-                        <div class="col-sm-5">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Comment</mat-label>
-                                <input matInput placeholder="Comment" formControlName="text"
-                                    [(ngModel)]="comment.text" />
-                            </mat-form-field>
-                        </div>
-                        <!-- Username -->
-                        <div class="col-sm-5">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>User</mat-label>
-                                <input matInput placeholder="User" formControlName="userName"
-                                    [(ngModel)]="comment.userName" />
-                            </mat-form-field>
-                        </div>
-                        <div class="col-sm-2">
-                            <button mat-flat-button class="right-margin" color="accent"
-                                (click)="addComment()">Add</button>
-
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-            <div class="row">
-                <div class="col-md-8">
-                    <table mat-table [dataSource]="dataSource">
-
-                        <!--- Note that these columns can be defined in any order.
-                              The actual rendered columns are set as a property on the row definition" -->
-
-                        <!-- Position Column -->
-                        <ng-container matColumnDef="sNo">
-                            <th mat-header-cell *matHeaderCellDef> Date </th>
-                            <td mat-cell *matCellDef="let element;"> {{ (element.createdOn | date:'dd-MMM-yyy' || "NA")
-                                }} </td>
-                        </ng-container>
-
-                        <!-- Name Column -->
-                        <ng-container matColumnDef="comment">
-                            <th mat-header-cell *matHeaderCellDef> Comment </th>
-                            <td mat-cell *matCellDef="let element"> {{ element.text || "NA"}} </td>
-                        </ng-container>
-
-                        <!-- Weight Column -->
-                        <ng-container matColumnDef="username">
-                            <th mat-header-cell *matHeaderCellDef> Username </th>
-                            <td mat-cell *matCellDef="let element"> {{element.userName || "NA"}} </td>
-                        </ng-container>
-
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                    </table>
-                    <mat-paginator #paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize"
-                        [pageSizeOptions]="pageSizeOptions">
-                    </mat-paginator>
-
-                </div>
-            </div>
 
             <div class="full-width top-padding"></div>
             <div class="row">
                 <div class="col-md-12 right-align">
                     <button mat-flat-button class="right-margin" color="accent" (click)="back()">Cancel</button>
-                    <button mat-flat-button class="right-margin" color="primary" [disabled]="!trademarkForm.valid"
+                    <button mat-flat-button class="right-margin" color="primary" [disabled]="!mainForm.valid"
                         (click)="id ? update() : add()">Save</button>
                 </div>
             </div>

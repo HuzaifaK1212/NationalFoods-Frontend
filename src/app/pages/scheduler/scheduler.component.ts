@@ -17,6 +17,7 @@ import { ChangeEventArgs as TimeEventArgs } from '@syncfusion/ej2-calendars';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfigService } from 'src/app/core/services/config.service';
 import { MappingService } from 'src/app/core/services/mapping.service';
+import { Router } from '@angular/router';
 declare var moment: any;
 
 @Component({
@@ -189,9 +190,14 @@ export class SchedulerComponent implements AfterViewChecked {
 
   constructor(
     private configService: ConfigService,
-    private mappingService: MappingService
+    private mappingService: MappingService,
+    private router: Router
   ) {
-    this.fetchTrademarks();
+    if(this.router.url.split("/")[this.router.url.split("/").length - 1] === "compliances") {
+      this.fetch();
+    } else {
+      this.fetchTrademarks();
+    }
   }
 
   public ngAfterViewChecked(): void {
@@ -535,6 +541,8 @@ export class SchedulerComponent implements AfterViewChecked {
   trademarks: any[] = [];
   dataSource!: MatTableDataSource<any>;
 
+  dataList: any[] = [];
+
   async fetchTrademarks() {
     this.trademarks = [];
     this.dataSource = new MatTableDataSource(this.trademarks);
@@ -553,6 +561,29 @@ export class SchedulerComponent implements AfterViewChecked {
       }
 
     });
+  }
+
+  async fetch() {
+    this.dataList = [];
+    this.dataSource = new MatTableDataSource(this.dataList);
+    await this.configService.getCompliances().subscribe((res: any) => {
+      let tempList = res || [];
+      let tList = [];
+      if (tempList && tempList.length > 0) {
+        for (let i = 0; i < tempList.length; i++) {
+          let tempItem = this.mappingService.mapCompliance(tempList[i]);
+          tList.push(tempItem);
+        }
+        console.log(tList);
+        this.dataList = tList;
+        this.generateEvents2();
+      } else {
+        this.dataList = [];
+      }
+
+      this.dataSource = new MatTableDataSource(this.dataList);
+    });
+
   }
 
   public generateEvents(): Record<string, any>[] {
@@ -633,6 +664,53 @@ export class SchedulerComponent implements AfterViewChecked {
     }
     this.eventSettings = { dataSource: overviewEvents };
     return overviewEvents;
+  }
+
+  public generateEvents2(): Record<string, any>[] {
+    const eventData: Record<string, any>[] = [];
+    const eventSubjects: string[] = [];
+    const weekDate: Date = new Date(new Date().setDate(new Date().getDate() - new Date().getDay()));
+    let startDate: Date = new Date(2000, 1, 1, 10, 0);
+    let endDate: Date = new Date(weekDate.getFullYear(), weekDate.getMonth(), weekDate.getDate(), 11, 30);
+
+    for (let i = 0; i < this.dataList.length; i++) {
+
+      const start: Date = new Date(this.dataList[i].deadlineDate);
+      const end: Date = new Date(start.getTime());
+      end.setHours(end.getHours() + 2);
+      startDate = new Date(start.getTime());
+      endDate = new Date(end.getTime());
+      eventData.push({
+        Id: this.dataList[i].id,
+        Subject: this.dataList[i].returnStatement,
+        date: new Date(this.dataList[i].deadlineDate),
+        // RecurrenceRule: 'FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR;INTERVAL=1;COUNT=10;',
+        // Description: 'Event Scheduled',
+        StartTime: startDate,
+        EndTime: endDate,
+        IsAllDay: true,
+        IsReadonly: true,
+        CalendarId: 1
+      });
+    }
+    const overviewEvents: { [key: string]: Date }[] = extend([], eventData, null, true) as { [key: string]: Date }[];
+    const timezone: Timezone = new Timezone();
+    const utcTimezone: never = 'UTC' as never;
+    const currentTimezone: never = timezone.getLocalTimezoneName() as never;
+    for (const event of overviewEvents) {
+      event['StartTime'] = timezone.convert(event['StartTime'], utcTimezone, currentTimezone);
+      event['EndTime'] = timezone.convert(event['EndTime'], utcTimezone, currentTimezone);
+    }
+    this.eventSettings = { dataSource: overviewEvents };
+    return overviewEvents;
+  }
+
+  onBack() {
+    if(this.router.url.split("/")[this.router.url.split("/").length - 1] === "compliances") {
+      this.router.navigate(['/compliances']);
+    } else {
+      this.router.navigate(['/trademarks']);
+    }
   }
 
 }

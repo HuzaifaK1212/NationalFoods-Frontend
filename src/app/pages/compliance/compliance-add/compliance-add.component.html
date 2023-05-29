@@ -1,0 +1,279 @@
+<!-- Header -->
+<mat-toolbar color="primary" class="app-toolbar">
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span class="logo"></span>
+    <span class="example-spacer"></span>
+    <div class="search-box">
+        <form role="search" class="in-suiteux-search-box">
+            <span role="none">
+                <!-- <button type="button" tabindex="-1" aria-hidden="true" class="search-btn">
+                    <mat-icon>search</mat-icon>
+                </button> -->
+            </span>
+            <input role="combobox" type="search" aria-autocomplete="list" aria-owns="ms-searchux-popup-0" accesskey="S"
+                spellcheck="false" autocomplete="off" autocorrect="false" data-nav="true" data-tab="true"
+                maxlength="500" class="search-input" aria-expanded="false" placeholder="Search this site"
+                aria-label="Search box. Suggestions appear as you type.">
+            <div role="listbox" aria-busy="true" tabindex="-1" style="display: none;" class="search-result-box"
+                aria-label="Search suggestions">Search Results</div>
+        </form>
+    </div>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with user icon"
+        color="accent" [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>General Settings</button>
+        <button mat-menu-item>Account Settings</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>Profile</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>Logout</button>
+    </mat-menu>
+</mat-toolbar>
+<!-- End of Header -->
+
+<!-- Container -->
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="over">
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a href="#" class="menu-item"><mat-icon>dashboard_customize</mat-icon> Dashboard</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Trademarks</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button routerLink="/trademarks" mat-button class="menu-item"> Trademarks</button>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Brand Protections</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button routerLink="/brand-protections" mat-button class="menu-item"> Brand Protections</button>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Compliance</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button routerLink="/compliances" mat-button class="menu-item"> Compliances</button>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Sales Tax</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button routerLink="/sales-taxes" mat-button class="menu-item"> Sales Taxes</button>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Withholding Tax</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button routerLink="/withholding-taxes" mat-button class="menu-item"> Withholding Taxes</button>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <div class="all-padding-large scroll-container-main bootstrap-wrapper">
+            <div class="full-width">
+                <h1>Add Compliance</h1>
+            </div>
+
+            <form [formGroup]="mainForm">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Country</mat-label>
+                                    <mat-select matInput placeholder="Country" required formControlName="country"
+                                        [(ngModel)]="item.country">
+                                        <mat-option>None</mat-option>
+                                        <mat-option *ngFor="let country of countryList" [value]="country">
+                                            {{ country }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error
+                                        *ngIf="mainForm.controls['country'].touched && mainForm.controls['country'].errors">
+                                        Country is
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Law</mat-label>
+                                    <mat-select matInput placeholder="Law" required formControlName="law"
+                                        [(ngModel)]="item.law" [disabled]="!item.country">
+                                        <mat-option>None</mat-option>
+                                        <mat-option *ngFor="let law of lawList" [value]="law">
+                                            {{ law }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error
+                                        *ngIf="mainForm.controls['law'].touched && mainForm.controls['law'].errors">
+                                        Law is
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Authority</mat-label>
+                                    <mat-select matInput placeholder="Authority" required formControlName="authority"
+                                        [(ngModel)]="item.authority" [disabled]="!item.country">
+                                        <mat-option>None</mat-option>
+                                        <mat-option *ngFor="let authority of authorityList" [value]="authority">
+                                            {{ authority }}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error
+                                        *ngIf="mainForm.controls['authority'].touched && mainForm.controls['authority'].errors">
+                                        Authority is
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Return Statement</mat-label>
+                                    <input matInput placeholder="Return Statement" required
+                                        formControlName="returnStatement" [(ngModel)]="item.returnStatement">
+                                    <mat-error
+                                        *ngIf="mainForm.controls['returnStatement'].touched && mainForm.controls['returnStatement'].errors">
+                                        Return Statement is
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Standard Deadline</mat-label>
+                                    <input matInput [matDatepicker]="picker1" formControlName="deadlineDate"
+                                        [(ngModel)]="item.deadlineDate" readonly required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker1></mat-datepicker>
+                                    <mat-error *ngIf="mainForm.controls['deadlineDate'].hasError('required')">
+                                        Standard deadline is
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Notify No. of days before expiry</mat-label>
+                                    <input matInput placeholder="Notify No. of days before expiry" required
+                                        [readonly]="true" formControlName="notifyDaysBeforeExpiry"
+                                        [(ngModel)]="notifyDaysBeforeExpiry">
+                                    <mat-error
+                                        *ngIf="mainForm.controls['notifyDaysBeforeExpiry'].touched && mainForm.controls['notifyDaysBeforeExpiry'].errors">
+                                        Notify no. of days before expiry are
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-6" *ngIf="!id">
+                                <label id="example-radio-group-label">Occurrence</label>
+                                <mat-radio-group *ngIf="!id" [(ngModel)]="selectedOccurrence"
+                                    formControlName="occurrence" class="example-radio-group"
+                                    aria-labelledby="example-radio-group-label">
+                                    <mat-radio-button *ngFor="let occurrence of occurrences" [value]="occurrence"
+                                        class="example-radio-button">{{
+                                        occurrence }}</mat-radio-button>
+                                </mat-radio-group>
+                                <mat-error
+                                    *ngIf="mainForm.controls['occurrence'].touched && mainForm.controls['occurrence'].errors">
+                                    Occurrence is
+                                    <strong>required</strong>
+                                </mat-error>
+                            </div>
+
+
+                            <br><br>
+                            <div class="col-sm-12">
+                                <hr>
+                                <mat-form-field class="example-full-width" *ngIf="id">
+                                    <input hidden=true matInput>
+                                    <mat-checkbox class="example-margin" [(ngModel)]="checked"
+                                        formControlName="checkbox">
+                                        Submitted</mat-checkbox><br><br>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-6" *ngIf="id">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Filing Date</mat-label>
+                                    <input matInput [matDatepicker]="picker2" formControlName="filingDate"
+                                        [(ngModel)]="item.filingDate" readonly required [disabled]="!checked">
+                                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker2></mat-datepicker>
+                                    <mat-error *ngIf="mainForm.controls['filingDate'].hasError('filingDate')">
+                                        Filing Date is
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6">
+                                <button mat-icon-button>
+                                    <mat-icon>file_present</mat-icon>
+                                    
+                                </button><br>
+                                <div class="file" (click)="downloadMyFile()">May Tax Filing.pdf</div>
+                            </div>
+
+                            <div class="col-sm-6" *ngIf="id">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Remarks</mat-label>
+                                    <textarea matInput placeholder="Remarks" required formControlName="remarks"
+                                        [(ngModel)]="item.remarks" [readonly]="!checked"></textarea>
+                                    <mat-error
+                                        *ngIf="mainForm.controls['remarks'].touched && mainForm.controls['remarks'].errors">
+                                        Remarks is
+                                        <strong>required</strong>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="full-width top-padding"></div>
+            <div class="row">
+                <div class="col-md-12 right-align">
+                    <button mat-flat-button class="right-margin" color="accent" (click)="back()">Cancel</button>
+                    <button mat-flat-button class="right-margin" color="primary" [disabled]="!mainForm.valid"
+                        (click)="id ? update() : add()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</mat-drawer-container>

@@ -3,6 +3,9 @@ import { Trademark, TrademarkComment } from "./models/trademark.model";
 import { Status } from "./models/base.model";
 import { Injectable } from "@angular/core";
 import { BrandProtection, BrandProtectionProgress } from "./models/brand-protection.model";
+import { Compliance } from "./models/compliance.model";
+import { SalesTaxCase, SalesTaxComments } from "./models/sales-tax.model";
+import { WithholdingTax } from "./models/withholding-tax.model";
 
 @Injectable({
     providedIn: 'root',
@@ -63,7 +66,7 @@ export class MappingService {
             isBrandProtection.brief = resData.brief || null;
             isBrandProtection.statusId = resData.statusId || null;
             isBrandProtection.status = resData.statusId && resData.status ? this.mapStatus(resData.status) : null;
-            
+
             if (resData.progressList && resData.progressList.length > 0) {
                 let tempList = [];
                 for (let i = 0; i < resData.progressList.length; i++) {
@@ -124,5 +127,82 @@ export class MappingService {
             isProgress.userName = resData.userName || null;
         }
         return isProgress;
+    }
+
+    public mapCompliance(res: any): Compliance {
+        const resData = res ? res : null;
+        const compliance = new Compliance();
+        if (resData) {
+            compliance.id = resData.id || null;
+            compliance.createdOn = resData.createdOn ? this.datePipe.transform(resData.createdOn, 'yyyy-MMM-dd') : null;
+            compliance.createdBy = resData.createdBy || null;
+            compliance.updatedBy = resData.updatedBy || null;
+            compliance.updatedOn = resData.updatedOn ? this.datePipe.transform(resData.updatedOn, 'yyyy-MMM-dd') : null;
+            compliance.active = resData.active || null;
+            compliance.country = resData.country || null;
+            compliance.law = resData.law || null;
+            compliance.authority = resData.authority || null;
+            compliance.returnStatement = resData.returnStatement || null;
+            compliance.deadlineDate = resData.deadlineDate || null;
+            compliance.filingDate = resData.filingDate || null;
+            compliance.remarks = resData.remarks || null;
+        }
+        return compliance;
+    }
+
+    public mapSalesTaxCase(res: any): SalesTaxCase {
+        const resData = res ? res : null;
+        const salesTaxCase = new SalesTaxCase();
+        if (resData) {
+            salesTaxCase.id = resData.id || null;
+            salesTaxCase.createdOn = resData.createdOn ? this.datePipe.transform(resData.createdOn, 'yyyy-MMM-dd') : null;
+            salesTaxCase.createdBy = resData.createdBy || null;
+            salesTaxCase.updatedBy = resData.updatedBy || null;
+            salesTaxCase.updatedOn = resData.updatedOn ? this.datePipe.transform(resData.updatedOn, 'yyyy-MMM-dd') : null;
+            salesTaxCase.active = resData.active || null;
+            salesTaxCase.description = resData.description || null;
+            salesTaxCase.taxYear = resData.taxYear || null;
+            salesTaxCase.amountExposure = resData.amountExposure || null;
+            salesTaxCase.provision = resData.provision || null;
+            salesTaxCase.status = resData.status || null;
+        }
+        return salesTaxCase;
+    }
+
+    public mapSalesTaxComments(res: any): SalesTaxComments {
+        const resData = res ? res : null;
+        const salesTaxComments = new SalesTaxComments();
+        if (resData) {
+            salesTaxComments.id = resData.id || null;
+            salesTaxComments.createdOn = resData.createdOn ? this.datePipe.transform(resData.createdOn, 'yyyy-MMM-dd') : null;
+            salesTaxComments.createdBy = resData.createdBy || null;
+            salesTaxComments.updatedBy = resData.updatedBy || null;
+            salesTaxComments.updatedOn = resData.updatedOn ? this.datePipe.transform(resData.updatedOn, 'yyyy-MMM-dd') : null;
+            salesTaxComments.active = resData.active || null;
+            salesTaxComments.text = resData.text || null;
+            salesTaxComments.userName = resData.userName || null;
+            salesTaxComments.salesTaxCaseId = resData.salesTaxCaseId || null;
+            salesTaxComments.salesTaxCase = resData.salesTaxCase ? this.mapSalesTaxCase(resData.salesTaxCase) : new SalesTaxCase();
+        }
+        return salesTaxComments;
+    }
+
+    public mapWithholdingTax(res: any): WithholdingTax {
+        const resData = res ? res : null;
+        const withholdingTax = new WithholdingTax();
+        if (resData) {
+            withholdingTax.id = resData.id || null;
+            withholdingTax.createdOn = resData.createdOn ? this.datePipe.transform(resData.createdOn, 'yyyy-MMM-dd') : null;
+            withholdingTax.createdBy = resData.createdBy || null;
+            withholdingTax.updatedBy = resData.updatedBy || null;
+            withholdingTax.updatedOn = resData.updatedOn ? this.datePipe.transform(resData.updatedOn, 'yyyy-MMM-dd') : null;
+            withholdingTax.active = resData.active || null;
+            withholdingTax.accountingYears = resData.accountingYears || null;
+            withholdingTax.demandAssessed = resData.demandAssessed || null;
+            withholdingTax.demandPaid = resData.demandPaid || null;
+            withholdingTax.comments = resData.comments || null;
+            withholdingTax.actionPoint = resData.actionPoint || null;
+        }
+        return withholdingTax;
     }
 }

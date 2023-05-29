@@ -8,9 +8,9 @@
     <div class="search-box">
         <form role="search" class="in-suiteux-search-box">
             <span role="none">
-                <button type="button" tabindex="-1" aria-hidden="true" class="search-btn">
+                <!-- <button type="button" tabindex="-1" aria-hidden="true" class="search-btn">
                     <mat-icon>search</mat-icon>
-                </button>
+                </button> -->
             </span>
             <input role="combobox" type="search" aria-autocomplete="list" aria-owns="ms-searchux-popup-0" accesskey="S"
                 spellcheck="false" autocomplete="off" autocorrect="false" data-nav="true" data-tab="true"
@@ -38,9 +38,9 @@
 
 <!-- Container -->
 <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
+    <mat-drawer #drawer class="example-sidenav" mode="over">
         <mat-accordion>
-            <mat-expansion-panel hideToggle>
+            <mat-expansion-panel hideToggle >
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         <a href="#" class="menu-item"><mat-icon>dashboard_customize</mat-icon> Dashboard</a>
@@ -50,12 +50,21 @@
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Manage Trademarks</a>
+                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Legal</a>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <button routerLink="/trademarks" mat-button class="menu-item"> Trademarks</button>
-                <br>
-                <button mat-button class="menu-item"> Brand Protections</button>
+                <button routerLink="/trademarks" mat-button class="menu-item"> Trademarks</button><br>
+                <button mat-button class="menu-item"> Brand Protections</button><br>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>perm_data_setting</mat-icon> Finance</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <button routerLink="/compliances" mat-button class="menu-item"> Compliances</button><br>
+                <button routerLink="/sales-taxes" mat-button class="menu-item"> Sales Taxes</button><br>
+                <button routerLink="/withholding-taxes" mat-button class="menu-item"> Withholding Taxes</button>
             </mat-expansion-panel>
         </mat-accordion>
     </mat-drawer>
@@ -80,9 +89,9 @@
                     <button mat-menu-item>Item 4</button>
                 </mat-menu>
                 <span class="example-spacer"></span>
-                <button mat-button class="ribbon-button" color="primary">
+                <!-- <button mat-button class="ribbon-button" color="primary">
                     <mat-icon>filter_alt</mat-icon> Filter
-                </button>
+                </button> -->
                 <!-- </div> -->
             </mat-toolbar>
         </div>

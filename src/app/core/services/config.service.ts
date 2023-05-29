@@ -4,6 +4,9 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Trademark, TrademarkComment } from './models/trademark.model';
 import { BrandProtection } from './models/brand-protection.model';
+import { Compliance } from './models/compliance.model';
+import { SalesTaxCase } from './models/sales-tax.model';
+import { WithholdingTax } from './models/withholding-tax.model';
 
 @Injectable({
     providedIn: 'root',
@@ -165,6 +168,101 @@ export class ConfigService {
                 body,
                 this.httpHeader
             )
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+    // compliance 
+
+    getCompliances(): Observable<Compliance> {
+        return this.httpClient
+            .get<Compliance>(this.endpoint + '/compliance/all')
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+    getComplianceViaId(id: number): Observable<Compliance> {
+        return this.httpClient
+            .get<Compliance>(this.endpoint + '/compliance/' + id)
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+    addCompliance(data: any): Observable<Compliance> {
+        let body = {
+            Country: data.country || null,
+            Law: data.law || null,
+            Authority: data.authority || null,
+            ReturnStatement: data.returnStatement || null,
+            DeadlineDate: data.deadlineDate || null,
+            Remarks: data.remarks || null
+        };
+
+        return this.httpClient
+            .post<Compliance>(
+                this.endpoint + '/compliance/add',
+                body,
+                this.httpHeader
+            )
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+    UpdateCompliance(data: any): Observable<Compliance> {
+        let body = {
+            Id: data.id || null,
+            Country: data.country || null,
+            Law: data.law || null,
+            Authority: data.authority || null,
+            ReturnStatement: data.returnStatement || null,
+            DeadlineDate: data.deadlineDate || null,
+            Remarks: data.remarks || null,
+            Active: data.false || null
+        };
+
+        return this.httpClient
+            .post<Compliance>(
+                this.endpoint + '/compliance/update',
+                body,
+                this.httpHeader
+            )
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+
+    // sales tax cases
+
+    getSalesTaxCases(): Observable<SalesTaxCase> {
+        return this.httpClient
+            .get<SalesTaxCase>(this.endpoint + '/sales-tax/all')
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+    getSalesTaxCasesViaId(id: number): Observable<SalesTaxCase> {
+        return this.httpClient
+            .get<SalesTaxCase>(this.endpoint + '/sales-tax/' + id)
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+    addSalesTax(data: any): Observable<SalesTaxCase> {
+        let body = {
+            Description: data.country || null,
+            TaxYear: data.law || null,
+            AmountExposure: data.authority || null,
+            Provision: data.returnStatement || null,
+            Status: data.deadlineDate || null 
+        };
+
+        return this.httpClient
+            .post<SalesTaxCase>(
+                this.endpoint + '/sales-tax/add',
+                body,
+                this.httpHeader
+            )
+            .pipe(retry(1), catchError(this.processError));
+    }
+
+    // withholding tax 
+
+    getWithholdingTax(): Observable<WithholdingTax> {
+        return this.httpClient
+            .get<WithholdingTax>(this.endpoint + '/withholding-tax/all')
             .pipe(retry(1), catchError(this.processError));
     }
 

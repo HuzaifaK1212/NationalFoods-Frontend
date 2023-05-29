@@ -6,6 +6,12 @@ import { TrademarkAddComponent } from './pages/trademark/trademark-add/trademark
 import { BrandProtectionListComponent } from './pages/brand-protection/brand-protection-list/brand-protection-list.component';
 import { BrandProtectionAddComponent } from './pages/brand-protection/brand-protection-add/brand-protection-add.component';
 import { SchedulerComponent } from './pages/scheduler/scheduler.component';
+import { ComplianceListComponent } from './pages/compliance/compliance-list/compliance-list.component';
+import { ComplianceAddComponent } from './pages/compliance/compliance-add/compliance-add.component';
+import { SalesTaxListComponent } from './pages/sales-tax/sales-tax-list/sales-tax-list.component';
+import { SalesTaxAddComponent } from './pages/sales-tax/sales-tax-add/sales-tax-add.component';
+import { WithholdingTaxListComponent } from './pages/withholding-tax/withholding-tax-list/withholding-tax-list.component';
+import { WithholdingTaxAddComponent } from './pages/withholding-tax/withholding-tax-add/withholding-tax-add.component';
 
 const routes: Routes = [
   {
@@ -63,9 +69,50 @@ const routes: Routes = [
     component: BrandProtectionAddComponent
   },
   {
-    path: 'scheduler',
+    path: 'scheduler/trademarks',
     component: SchedulerComponent
+  },
+  {
+    path: 'scheduler/compliances',
+    component: SchedulerComponent
+  },
+  {
+    path: 'compliances',
+    component: ComplianceListComponent
+  },
+  {
+    path: 'compliances/add',
+    component: ComplianceAddComponent
+  },
+  {
+    path: 'compliances/edit/:id',
+    component: ComplianceAddComponent
+  },
+  {
+    path: 'sales-taxes',
+    component: SalesTaxListComponent
+  },
+  {
+    path: 'sales-taxes/add',
+    component: SalesTaxAddComponent
+  },
+  {
+    path: 'sales-taxes/edit/:id',
+    component: SalesTaxAddComponent
+  },
+  {
+    path: 'withholding-taxes',
+    component: WithholdingTaxListComponent
+  },
+  {
+    path: 'withholding-taxes/add',
+    component: WithholdingTaxAddComponent
+  },
+  {
+    path: 'withholding-taxes/edit/:id',
+    component: WithholdingTaxAddComponent
   }
+  
 ];
 
 @NgModule({

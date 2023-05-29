@@ -46,6 +46,12 @@ import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
 import { MultiSelectComponent } from '@syncfusion/ej2-angular-dropdowns';
 import { SafePipe } from './core/shared/safepipe';
+import { ComplianceListComponent } from './pages/compliance/compliance-list/compliance-list.component';
+import { ComplianceAddComponent } from './pages/compliance/compliance-add/compliance-add.component';
+import { SalesTaxListComponent } from './pages/sales-tax/sales-tax-list/sales-tax-list.component';
+import { SalesTaxAddComponent } from './pages/sales-tax/sales-tax-add/sales-tax-add.component';
+import { WithholdingTaxListComponent } from './pages/withholding-tax/withholding-tax-list/withholding-tax-list.component';
+import { WithholdingTaxAddComponent } from './pages/withholding-tax/withholding-tax-add/withholding-tax-add.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -56,7 +62,13 @@ import { SafePipe } from './core/shared/safepipe';
     TrademarkAddComponent,
     BrandProtectionListComponent,
     BrandProtectionAddComponent,
-    SchedulerComponent
+    SchedulerComponent,
+    ComplianceListComponent,
+    ComplianceAddComponent,
+    SalesTaxListComponent,
+    SalesTaxAddComponent,
+    WithholdingTaxListComponent,
+    WithholdingTaxAddComponent
   ],
   imports: [
     BrowserModule,
