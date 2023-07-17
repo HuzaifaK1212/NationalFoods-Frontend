@@ -113,11 +113,11 @@
         <div class="all-padding-large scroll-container-main">
             <!--  -->
             <div class="full-width">
-                <h1>Brand Protections</h1>
+                <h1>Documents</h1>
             </div>
             <mat-form-field appearance="standard">
                 <mat-label>Filter</mat-label>
-                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Trademark" #input>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Documents" #input>
             </mat-form-field>
             <div>
                 <table mat-table [dataSource]="dataSource" matSort>
@@ -181,10 +181,19 @@
                         </td>
                     </ng-container>
 
-                    <ng-container matColumnDef="status">
+                    <!-- <ng-container matColumnDef="status">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
                         <td mat-cell *matCellDef="let row">
                             {{ row?.status?.name || "NA" }} </td>
+                    </ng-container> -->
+
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> View </th>
+                        <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button (click)="onView()">
+                            <mat-icon>visibility</mat-icon>
+                          </button>
+                      </td>
                     </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

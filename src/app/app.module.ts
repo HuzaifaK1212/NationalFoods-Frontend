@@ -52,6 +52,10 @@ import { SalesTaxListComponent } from './pages/sales-tax/sales-tax-list/sales-ta
 import { SalesTaxAddComponent } from './pages/sales-tax/sales-tax-add/sales-tax-add.component';
 import { WithholdingTaxListComponent } from './pages/withholding-tax/withholding-tax-list/withholding-tax-list.component';
 import { WithholdingTaxAddComponent } from './pages/withholding-tax/withholding-tax-add/withholding-tax-add.component';
+import { RepoListComponent } from './pages/repo/repo-list/repo-list.component';
+import { RepoSubItemsComponent } from './pages/repo/repo-sub-items/repo-sub-items.component';
+import { DialogComponentComponent } from './core/shared/dialog/dialog-component/dialog-component.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -68,7 +72,11 @@ import { WithholdingTaxAddComponent } from './pages/withholding-tax/withholding-
     SalesTaxListComponent,
     SalesTaxAddComponent,
     WithholdingTaxListComponent,
-    WithholdingTaxAddComponent
+    WithholdingTaxAddComponent,
+    RepoListComponent,
+    RepoSubItemsComponent,
+    DialogComponentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +107,8 @@ import { WithholdingTaxAddComponent } from './pages/withholding-tax/withholding-
     MatDatepickerModule,
     MatNativeDateModule,
     ScheduleModule,
-    DropDownButtonModule
+    DropDownButtonModule,
+    MatCheckboxModule,
   ],
   providers: [
     MappingService,

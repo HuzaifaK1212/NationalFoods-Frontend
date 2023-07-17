@@ -13,7 +13,8 @@ import { WithholdingTax } from './models/withholding-tax.model';
 })
 
 export class ConfigService {
-    endpoint = 'http://localhost:5001/api';
+    // endpoint = 'http://localhost:5001/api';
+    endpoint = 'http://3.1.122.241/nationalfoods/api';
     constructor(private httpClient: HttpClient) { }
     httpHeader = {
         headers: new HttpHeaders({

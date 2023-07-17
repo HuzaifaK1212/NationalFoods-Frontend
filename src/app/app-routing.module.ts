@@ -12,6 +12,9 @@ import { SalesTaxListComponent } from './pages/sales-tax/sales-tax-list/sales-ta
 import { SalesTaxAddComponent } from './pages/sales-tax/sales-tax-add/sales-tax-add.component';
 import { WithholdingTaxListComponent } from './pages/withholding-tax/withholding-tax-list/withholding-tax-list.component';
 import { WithholdingTaxAddComponent } from './pages/withholding-tax/withholding-tax-add/withholding-tax-add.component';
+import { RepoListComponent } from './pages/repo/repo-list/repo-list.component';
+import { RepoSubItemsComponent } from './pages/repo/repo-sub-items/repo-sub-items.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   {
@@ -111,6 +114,18 @@ const routes: Routes = [
   {
     path: 'withholding-taxes/edit/:id',
     component: WithholdingTaxAddComponent
+  },
+  {
+    path: 'repo',
+    component: RepoListComponent
+  },
+  {
+    path: 'repo-sub-items',
+    component: RepoSubItemsComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
   
 ];

@@ -1,0 +1,66 @@
+<div class="auth-pg full-width">
+          <form class="auth-form" [formGroup]="formLogin">
+            <div class="auth-pg-logo">
+              <img src="assets/img/login-logo.png" alt="Raid Logo">
+            </div>
+            <div class="bootstrap-wrapper">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h1>Login to your account</h1>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12">
+
+                    <span>Please enter your email and password</span>
+
+                  </div>
+                </div>
+                <div class="top-padding"></div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <mat-form-field appearance="fill" class="example-full-width">
+                      <mat-label>Email</mat-label>
+                      <input matInput formControlName="email" [(ngModel)]="user.user_Email" name="email"
+                        autocomplete="nope">
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="top-padding"></div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <mat-form-field appearance="fill" class="example-full-width">
+                      <mat-label>Enter your password</mat-label>
+                      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"
+                        [(ngModel)]="user.user_Password" name="email" autocomplete="new-password">
+                      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <mat-checkbox>Keep me signed in</mat-checkbox>
+                  </div>
+                </div>
+
+                <div class="row align-item-center top-margin">
+                  <div class="col-sm-7 left-align">
+                    <a [routerLink]="['/ForgotPassword']" class="forget-password">Forgot Your Password?</a>
+                    
+                  </div>
+                  <div class="col right-align">
+                    <button type="submit" mat-flat-button color="accent" (click)="onLogin()" [disabled]="isSubmitted">Sign in</button>
+                  </div>
+                </div>
+                
+
+              </div>
+            </div>
+          </form>   
+</div>
