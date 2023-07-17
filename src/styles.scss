@@ -715,16 +715,8 @@ li {
   text-overflow: ellipsis;
 }
 
-// Dialog box styling
+// Dialog box styli
 
-.cdk-overlay-pane {
-  height: auto !important;
-  max-height: 100% !important;
-}
-
-.mat-dialog-content {
-  max-height: calc(100vh - 140px) !important;
-}
 
 // Authorization
 .auth-pg {
