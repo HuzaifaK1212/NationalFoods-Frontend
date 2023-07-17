@@ -1,1 +1,181 @@
-<router-outlet></router-outlet>
+
+<!-- Header -->
+<mat-toolbar color="primary" class="app-toolbar" *ngIf="routerLink">
+    <button mat-icon-button class="example-icon" (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span class="logo"></span>
+    <span class="example-spacer"></span>
+    <div *ngIf="false" class="search-box">
+        <form  role="search" class="in-suiteux-search-box">
+            <span role="none">
+                <!-- <button type="button" tabindex="-1" aria-hidden="true" class="search-btn">
+                    <mat-icon>search</mat-icon>
+                </button> -->
+            </span>
+            <input role="combobox" type="search" aria-autocomplete="list" aria-owns="ms-searchux-popup-0" accesskey="S"
+                spellcheck="false" autocomplete="off" autocorrect="false" data-nav="true" data-tab="true"
+                maxlength="500" class="search-input" aria-expanded="false" placeholder="Search this site"
+                aria-label="Search box. Suggestions appear as you type.">
+            <div role="listbox" aria-busy="true" tabindex="-1" style="display: none;" class="search-result-box"
+                aria-label="Search suggestions">Search Results</div>
+        </form>
+    </div>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with user icon"
+        color="accent" [matMenuTriggerFor]="menu">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>General Settings</button>
+        <button mat-menu-item>Account Settings</button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item>Profile</button>
+        <mat-divider></mat-divider>
+        <button routerLink="/login" mat-menu-item>Logout</button>
+    </mat-menu>
+</mat-toolbar>
+<!-- End of Header -->
+
+<!-- Container -->
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="over">
+        <mat-accordion>
+            <mat-expansion-panel hideToggle>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a href="#" class="menu-item"><mat-icon>dashboard_customize</mat-icon> Dashboard</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+            </mat-expansion-panel>
+            <!-- Legal Advisory -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>gavel</mat-icon> Legal Advisory</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="menu-subitem-container">
+                    <!-- <button routerLink="/trademarks" mat-button
+                        class="menu-item"><mat-icon>playlist_add_check_circle</mat-icon> Trademarks</button><br> -->
+                        <a class="menu-item" mat-menu-item><mat-icon color="primary">playlist_add_check_circle</mat-icon> NFL</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NF DMCC</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NEI</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> ATCH</a>
+                    <!-- <button mat-button class="menu-item"><mat-icon>privacy_tip</mat-icon> Brand Protections</button><br> -->
+                </div>
+            </mat-expansion-panel>
+
+            <!-- Contract -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>gavel</mat-icon> Contract</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="menu-subitem-container">
+                    <!-- <button routerLink="/trademarks" mat-button
+                        class="menu-item"><mat-icon>playlist_add_check_circle</mat-icon> Trademarks</button><br> -->
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">playlist_add_check_circle</mat-icon> NFL</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NF DMCC</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NEI</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> ATCH</a>
+                    <!-- <button mat-button class="menu-item"><mat-icon>privacy_tip</mat-icon> Brand Protections</button><br> -->
+                </div>
+            </mat-expansion-panel>
+
+            <!-- Litigation -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>gavel</mat-icon> Litigation</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="menu-subitem-container">
+                    <!-- <button routerLink="/trademarks" mat-button
+                        class="menu-item"><mat-icon>playlist_add_check_circle</mat-icon> Trademarks</button><br> -->
+                        <a routerLink="/brand-protections" class="menu-item" mat-menu-item><mat-icon color="primary">playlist_add_check_circle</mat-icon> NFL</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NF DMCC</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NEI</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> ATCH</a>
+                    <!-- <button mat-button class="menu-item"><mat-icon>privacy_tip</mat-icon> Brand Protections</button><br> -->
+                </div>
+            </mat-expansion-panel>
+
+            <!-- Tax -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>gavel</mat-icon> Tax</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="menu-subitem-container">
+                    <!-- <button routerLink="/trademarks" mat-button
+                        class="menu-item"><mat-icon>playlist_add_check_circle</mat-icon> Trademarks</button><br> -->
+                        <a routerLink="/sales-taxes" class="menu-item" mat-menu-item><mat-icon color="primary">playlist_add_check_circle</mat-icon> NFL</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NF DMCC</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NEI</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> ATCH</a>
+                    <!-- <button mat-button class="menu-item"><mat-icon>privacy_tip</mat-icon> Brand Protections</button><br> -->
+                </div>
+            </mat-expansion-panel>
+
+            <!-- Intellectual Property -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>gavel</mat-icon> Intellectual Property</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="menu-subitem-container">
+                    <!-- <button routerLink="/trademarks" mat-button
+                        class="menu-item"><mat-icon>playlist_add_check_circle</mat-icon> Trademarks</button><br> -->
+                        <a routerLink="/trademarks" class="menu-item" mat-menu-item><mat-icon color="primary">playlist_add_check_circle</mat-icon> NFL</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NF DMCC</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NEI</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> ATCH</a>
+                    <!-- <button mat-button class="menu-item"><mat-icon>privacy_tip</mat-icon> Brand Protections</button><br> -->
+                </div>
+            </mat-expansion-panel>
+
+            <!-- Comporate Compliance -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>gavel</mat-icon> Comporate Compliance</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="menu-subitem-container">
+                    <!-- <button routerLink="/trademarks" mat-button
+                        class="menu-item"><mat-icon>playlist_add_check_circle</mat-icon> Trademarks</button><br> -->
+                        <a routerLink="/compliances" class="menu-item" mat-menu-item><mat-icon color="primary">playlist_add_check_circle</mat-icon> NFL</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NF DMCC</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NEI</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> ATCH</a>
+                    <!-- <button mat-button class="menu-item"><mat-icon>privacy_tip</mat-icon> Brand Protections</button><br> -->
+                </div>
+            </mat-expansion-panel>
+
+            <!-- Repository -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <a class="menu-item"><mat-icon>gavel</mat-icon> Repository</a>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="menu-subitem-container">
+                    <!-- <button routerLink="/trademarks" mat-button
+                        class="menu-item"><mat-icon>playlist_add_check_circle</mat-icon> Trademarks</button><br> -->
+                        <a routerLink="/repo" class="menu-item" mat-menu-item><mat-icon color="primary">playlist_add_check_circle</mat-icon> NFL</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NF DMCC</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> NEI</a>
+                        <a  class="menu-item" mat-menu-item><mat-icon color="primary">privacy_tip</mat-icon> ATCH</a>
+                    <!-- <button mat-button class="menu-item"><mat-icon>privacy_tip</mat-icon> Brand Protections</button><br> -->
+                </div>
+            </mat-expansion-panel>
+
+
+        </mat-accordion>
+    </mat-drawer>
+    <router-outlet></router-outlet>
+</mat-drawer-container>

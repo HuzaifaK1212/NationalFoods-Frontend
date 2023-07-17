@@ -15,11 +15,12 @@ import { WithholdingTaxAddComponent } from './pages/withholding-tax/withholding-
 import { RepoListComponent } from './pages/repo/repo-list/repo-list.component';
 import { RepoSubItemsComponent } from './pages/repo/repo-sub-items/repo-sub-items.component';
 import { LoginComponent } from './pages/login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'trademarks',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -126,6 +127,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
   }
   
 ];

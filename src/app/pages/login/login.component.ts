@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private cdr: ChangeDetectorRef,
+    private cdr: ChangeDetectorRef
   ) {
     // this.user.loginType = this.environment.defaultLoginType;
 
@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     console.log("onLogin");
-    this._router.navigate(['/trademarks']);
+    this._router.navigate(['/dashboard']);
     // this.route.navigate(['Main']);
   }
 }

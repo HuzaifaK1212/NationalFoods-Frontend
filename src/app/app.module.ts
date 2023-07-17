@@ -56,6 +56,8 @@ import { RepoListComponent } from './pages/repo/repo-list/repo-list.component';
 import { RepoSubItemsComponent } from './pages/repo/repo-sub-items/repo-sub-items.component';
 import { DialogComponentComponent } from './core/shared/dialog/dialog-component/dialog-component.component';
 import { LoginComponent } from './pages/login/login.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -76,7 +78,8 @@ import { LoginComponent } from './pages/login/login.component';
     RepoListComponent,
     RepoSubItemsComponent,
     DialogComponentComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -109,6 +112,7 @@ import { LoginComponent } from './pages/login/login.component';
     ScheduleModule,
     DropDownButtonModule,
     MatCheckboxModule,
+    CanvasJSAngularChartsModule
   ],
   providers: [
     MappingService,
